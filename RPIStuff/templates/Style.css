@@ -1,0 +1,51 @@
+/* Resets */
+html, body{
+    max-width: 100%;
+    font-style: none;
+    box-sizing: border-box;
+    background-color: rgb(208, 252, 228);
+    font-family: 'Times New Roman', Times, serif
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+}
+/* Global */
+nav{
+    display: flex;
+    margin: auto;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+h1{
+    text-align: center;
+    margin: auto;
+    font-size: 3rem;
+    font-family: sans-serif;
+}
+h2{
+    font-size: 2rem;
+    text-align: center;
+    font-family: sans-serif;
+}
+.link{
+    display: block;
+    margin: 30px auto;
+}
+a:hover{
+    color: green;
+    transition: 1s;
+}
+/* Main */
+.info{
+    margin: 0 auto;
+    width: 800px;
+    line-height: 1.5;
+    font-size: 1.3rem;
+}
+p{
+    text-align: justify;
+}
+/* Graph */
+/* Table */
