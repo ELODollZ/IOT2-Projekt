@@ -4,14 +4,21 @@
 import sys
 import graphFile
 import indexFile
+import CreditInformation
+import InternetConnector
+import measure
+### StartUps
+CreditInformation.creditsInformationList()
+measure.measuredData()
 
 ### Variables
+
 
 
 ### Main Loop
 while True():
     try:
-        print("do something")
+        
 
     except TypeError:
         print("Type error somewhere in code, functional")
