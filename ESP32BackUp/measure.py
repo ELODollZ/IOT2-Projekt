@@ -1,9 +1,11 @@
+###Imports
 from machine import Pin
 import dht
-
+###Variables
 sensor = dht.DHT11(Pin(25))
 msg = ("t, h, s, x, y")
 msg.split(", ", 5)
+###MainCode
 def measuredData(msg):
     sensor.measure()
     t = sensor.temperature()

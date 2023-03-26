@@ -12,5 +12,22 @@ def create_connection(measuredData.db):
     finally:
         if conn:
             conn.close()
+
+    
+def create_Data_Inserter(conn, task):
+    sql = ''' INSERT INTO measuredData(TEMP, HUMD, SMOKE, XLOCATION, YLOCATION)
+                VALUES(?,?,?,?,?) 	'''
+    cur = conn.cursor()
+    cur.execute(sql, task)
+    conn.commit()
+    return cur.lastrowid
+def main():
+    database = r"~/IOT2-Projekt/Database/measuredData.db"
+    
+    conn = create_connection(database)
+    with conn:
+        task_1 =(msg)
+        create_task(conn, task_1)
 if __name__ == '__man__':
     create_connection(r"~/IOT2-Projekt/Database/measuredData.db")
+    main()
