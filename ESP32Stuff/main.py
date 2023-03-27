@@ -45,7 +45,7 @@ while True:
     try:
         client.check_msg()
         if(time.time() - last_message) > message_interval:
-            msg = b'measuredData #%d' % counter
+            msg = b'MeasuredDataFromESP #%d' % counter
             client.publish(topic_pub, msg)
             last_message = time.time()
             counter += 1
@@ -54,6 +54,6 @@ while True:
     except TypeError:
         print("Type error somewhere in code, functional")
     except:
-        print("Code Error")
+        print("STOP!")
         time.sleep(1)
         exit
