@@ -7,13 +7,14 @@ import random
 #import graphFile
 #import indexFile
 #import measure
+import time
 ### StartUps
 #measure.measuredData()
 
 ### Variables
 username = 'RPI'
 password = 'public'
-Broker = 'broker.RPI.io'
+broker = 'broker.RPI.io'
 counter = 0
 
 ### Main Functions
@@ -23,12 +24,12 @@ def sub_cb(topic, msg):
         print('ESP received hello message')
 
 def connect_and_subscribe():
-    global client_id, mqtt_server, topic_sub
+    global client_id, mqtt_server, topic_pub, topic_sub
     client = MQTTClient(client_id, mqtt_server)
     client.set_callback(sub_cb)
     client.connect()
-    client.subscribe(topic_sub)
-    print('Connected to %s MQTT broker, subribed to %s topic' % (mqtt_server, topic_sub))
+    client.subscribe(topic_pub)
+    print('Connected to %s MQTT broker, subribed to %s topic_pub' % (mqtt_server, topic_pub))
     return client
 def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
@@ -40,7 +41,7 @@ except OSError as e:
    restart_and_reconnect()
 
 ### Main Loop
-while True():
+while True:
     try:
         client.check_msg()
         if(time.time() - last_message) > message_interval:
@@ -50,13 +51,9 @@ while True():
             counter += 1
     except OSError as e:
         restart_and_reconnect()
-
     except TypeError:
         print("Type error somewhere in code, functional")
     except:
         print("Code Error")
-    finally:
-        print("code done")
-
-
-
+        time.sleep(1)
+        exit
