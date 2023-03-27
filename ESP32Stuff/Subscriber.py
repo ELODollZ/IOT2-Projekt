@@ -10,8 +10,8 @@ from paho.mqtt import client as mqtt_client
 broker = 'broker.RPI.io'
 port = 1883
 mqtt_server = '192.168.239.54'
-topic_sub = "measuredData"
-topic_pub = "Received"
+topic_sub = "Received"
+topic_pub = "measuredData"
 topic = "measuredData"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
