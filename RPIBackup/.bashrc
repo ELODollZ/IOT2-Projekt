@@ -114,6 +114,9 @@ fi
 
 #homemade
 alias Update='sudo apt update && sudo apt upgrade'
-alias ActEnviroment='cd;cd IOT2Project/IOT2-Projekt/;. FlaskEnviroment/bin/activate;cd FlaskEnviroment'
+alias ActEnviroment='cd;cd IOT2-Projekt;. FlaskEnviroment/bin/activate;cd FlaskEnviroment'
 alias DeActEnviroment='deactivate;cd'
+alias TestESP='cd; cd IOT2-Projekt/ESP32Stuff'
+alias TestRPI='cd; cd IOT2-Projekt/RPIStuff'
+
 
