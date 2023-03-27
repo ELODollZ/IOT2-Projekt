@@ -14,7 +14,7 @@ topic_sub = "measuredData"
 topic_pub = "Received"
 topic = "measuredData"
 # generate client ID with pub prefix randomly
-#client_id = f'python-mqtt-{random.randint(0, 100)}'
+client_id = f'python-mqtt-{random.randint(0, 100)}'
 username = 'RPI'
 password = 'public'
 
