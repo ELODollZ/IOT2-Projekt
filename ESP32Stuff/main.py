@@ -20,7 +20,7 @@ counter = 0
 ### Main Functions
 def sub_cb(topic, msg):
     print((topic, msg))
-    if topic == b'Notification' and msg == b'received':
+    if topic_sub == b'Received' and msg == b'received':
         print('ESP received hello message')
 
 def connect_and_subscribe():
@@ -28,8 +28,8 @@ def connect_and_subscribe():
     client = MQTTClient(client_id, mqtt_server)
     client.set_callback(sub_cb)
     client.connect()
-    client.subscribe(topic_pub)
-    print('Connected to %s MQTT broker, subribed to %s topic_pub' % (mqtt_server, topic_pub))
+    client.subscribe(topic_sub)
+    print('Connected to %s MQTT broker, subribed to %s topic_pub' % (mqtt_server, topic_sub))
     return client
 def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
@@ -56,4 +56,4 @@ while True:
     except:
         print("STOP!")
         time.sleep(1)
-        exit
+        sys.exit
