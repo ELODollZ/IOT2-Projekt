@@ -11,10 +11,10 @@ broker = 'broker.RPI.io'
 port = 1883
 mqtt_server = '192.168.239.54'
 topic_sub = "measuredData"
-topic_pub = "Notification"
+topic_pub = "Received"
 topic = "measuredData"
 # generate client ID with pub prefix randomly
-client_id = f'python-mqtt-{random.randint(0, 100)}'
+#client_id = f'python-mqtt-{random.randint(0, 100)}'
 username = 'RPI'
 password = 'public'
 
@@ -35,9 +35,8 @@ def connect_mqtt() -> mqtt_client:
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-
-    client.subscribe(topic)
+        print(f"Received `{msg.payload.decode()}` from `{msg.topic_sub}` topic")
+    client.subscribe(topic_sub)
     client.on_message = on_message
 
 

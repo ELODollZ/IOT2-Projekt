@@ -11,7 +11,7 @@ broker = 'broker.RPI.io'
 port = 1883
 topic = "measuredData"
 # generate client ID with pub prefix randomly
-client_id = f'python-mqtt-{random.randint(0, 100)}'
+#client_id = f'python-mqtt-{random.randint(0, 100)}'
 username = 'RPI'
 password = 'public'
 
