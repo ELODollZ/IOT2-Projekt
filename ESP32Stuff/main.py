@@ -28,8 +28,8 @@ def connect_and_subscribe():
     client = MQTTClient(client_id, mqtt_server)
     client.set_callback(sub_cb)
     client.connect()
-    client.subscribe(topic_sub)
-    print('Connected to %s MQTT broker, subribed to %s topic_pub' % (mqtt_server, topic_sub))
+    client.subscribe(topic_pub)
+    print('Connected to %s MQTT broker, subribed to %s topic_pub' % (mqtt_server, topic_pub))
     return client
 def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
@@ -55,5 +55,5 @@ while True:
         print("Type error somewhere in code, functional")
     except:
         print("STOP!")
-        time.sleep(1)
-        sys.exit
+        exit
+        time.sleep(2)
