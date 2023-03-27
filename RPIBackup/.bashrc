@@ -118,5 +118,5 @@ alias ActEnviroment='cd;cd IOT2-Projekt;. FlaskEnviroment/bin/activate;cd FlaskE
 alias DeActEnviroment='deactivate;cd'
 alias TestESP='cd; cd IOT2-Projekt/ESP32Stuff'
 alias TestRPI='cd; cd IOT2-Projekt/RPIStuff'
-
+alias TestRPICon='mosquitto_sub -h 192.168.239.54 -t "ESP32Data"'
 
