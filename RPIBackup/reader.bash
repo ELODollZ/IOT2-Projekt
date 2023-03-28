@@ -5,7 +5,7 @@ messages=""
 
 ###Functions
 runMosquittoPub () {
-	mosquitto_pub -h localhost -t "ESP32Data" -m "Received"
+	mosquitto_pub	-h	localhost	-t	"ESP32Data"	-m	"Received"
 }
 
 runMosquittoSub () {
