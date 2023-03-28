@@ -1,6 +1,3 @@
-<?php 
-	include('SQLite3Importer.php')
-	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

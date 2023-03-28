@@ -11,7 +11,7 @@
 	else {
 		echo "Open database successfully\n"
 	}
-
+	function InsertIntoHTML() {
    $sql =<<<EOF
       INSERT INTO measuredData(ID, TEMP, HUMD, SMOKE, XLOCATION, YLOCATION);
 	VALUES ([ID], [TEMP], [HUMD], [SMOKE], [XLOCATION], [YLOCATION])
@@ -25,4 +25,6 @@ EOF;
 	   echo "Records created successfully\n";
    }
    $db->close();
+	}
+
 ?>
