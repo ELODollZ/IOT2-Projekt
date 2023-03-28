@@ -3,7 +3,7 @@ from machine import Pin
 import dht
 ###Variables
 dhtsensor = dht.DHT11(Pin(25))
-carbonsensor = carbonsensor(Pin(24))
+carbonsensor = carbonsensor(Pin(26))
 message = ("t, h, s, x, y")
 msg.split(", ", 5)
 ###MainCode
