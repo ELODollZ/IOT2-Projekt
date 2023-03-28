@@ -2,14 +2,23 @@
 
 ###Variables
 messages=""
-
+SentMessages="Messages sent"
 ###Functions
-runMosquittoPub () {
-	mosquitto_pub	-h	localhost	-t	"ESP32Data"	-m	"Received"
+runMosquittoSub () {
+	while :
+	do
+	mosquitto_sub	-h	localhost	-t	"ESP32Data"
+	read messages
+	echo messages
+done
 }
 
-runMosquittoSub () {
-	mosquitto_sub	-h	localhost	-t	"ESP32Data"	-m	"Received"
+runMosquittoPub () {
+	while :
+	do
+	mosquitto_pub	-h	localhost	-t	"ESP32Data"	-m	"Received"
+	echo SentMessages
+done
 }
 
 
