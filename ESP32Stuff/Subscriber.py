@@ -9,7 +9,8 @@ from paho.mqtt import client as mqtt_client
 
 broker = 'broker.RPI.io'
 port = 1883
-mqtt_server = '192.168.239.54'
+RPI_IP_Add = '192.168.239.54'
+ESP32_IP_Add = '192.168.239.88'
 topic_pub = b'Received'
 topic_sub = b'measuredData'
 topic = "ESP32Data"

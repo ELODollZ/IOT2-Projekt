@@ -1,5 +1,3 @@
-from umqttsimple import MQTTClient
-
 def sub_cb(topic, msg):
     print((topic, msg))
     if topic == b'Notification' and msg == b'received':
@@ -17,18 +15,18 @@ def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
     time.sleep(10)
     machine.reset()
-try:
-   client = connect_and_subscribe()
-except OSError as e:
-   restart_and_reconnect()
-
-# while True:
-#     try:
-#         client.check_msg()
-#         if (time.time() - last_message) > message_interval:
-#             msg = b'measuredData #%d' % counter
-#             client.publish(topic_pub, msg)
-#             last_message = time.time()
-#             counter += 1
-#     except OSError as e:
-#         restart_and_reconnect()
+    try:
+        client = connect_and_subscribe()
+    except OSError as e:
+        restart_and_reconnect()
+        
+while True:
+    try:
+        client.check_msg()
+        if (time.time() - last_message) > message_interval:
+            msg = b'measuredData #%d' % counter
+            client.publish(topic_pub, msg)
+            last_message = time.time()
+            counter += 1
+    except OSError as e:
+        restart_and_reconnect()

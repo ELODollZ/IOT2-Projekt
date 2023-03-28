@@ -2,30 +2,34 @@
 ###Main File
 ### Imports
 import sys
+from umqttsimple import MQTTClient
+import random
 #import graphFile
 #import indexFile
-import InternetConnector
-import measure
+from measure import measuredData, message
+import time
 ### StartUps
-CreditInformation.creditsInformationList()
-measure.measuredData()
+#measure.measuredData()
 
 ### Variables
-
+username = 'RPI'
+password = 'public'
+broker = 'broker.RPI.io'
+counter = 0
 
 ### Main Functions
 def sub_cb(topic, msg):
     print((topic, msg))
-    if topic == b'Notification' and msg == b'received':
-        print('ESP received hello message')
+    if topic_pub == b'Received' and msg == b'received':
+        print('ESP Sendt Data')
 
 def connect_and_subscribe():
-    global client_id, mqtt_server, topic_sub
-    client = MQTTClient(client_id, mqtt_server)
+    global client_id, RPI_IP_Add, topic_pub, topic_sub, topic, port
+    client = MQTTClient(client_id, RPI_IP_Add)
     client.set_callback(sub_cb)
     client.connect()
-    client.subscribe(topic_sub)
-    print('Connected to %s MQTT broker, subribed to %s topic' % (mqtt_server, topic_sub))
+    client.subscribe(topic)
+    print('Connected to %s MQTT broker, subribed to %s topic' % (RPI_IP_Add, topic))
     return client
 def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
@@ -37,23 +41,19 @@ except OSError as e:
    restart_and_reconnect()
 
 ### Main Loop
-while True():
+while True:
     try:
         client.check_msg()
-        if (time.time() - last_message) > message_interval:
-            msg = b'measuredData #%d' % counter
-            client.publish(topic_pub, msg)
+        if(time.time() - last_message) > message_interval:
+            msg = message
+            client.publish(topic, msg)
             last_message = time.time()
             counter += 1
     except OSError as e:
         restart_and_reconnect()
-
     except TypeError:
         print("Type error somewhere in code, functional")
     except:
-        print("Code Error")
-    finally:
-        print("code done")
-
-
-
+        print("STOP!")
+        exit
+        time.sleep(2)

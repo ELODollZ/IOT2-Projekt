@@ -14,9 +14,10 @@ def measuredData(msg):
     h = dhtsensor.humidity()
     #print('Humidit: %3.1f P' %h)
     cb = carbonsensor.carbondixiode()
+    #cb = 300.2
     #print('Carbondixiode: %3.1f CB' %cb)
     #print(t,h)
-    if (t is not None) and (h is not None) and (cp is not None):
+    if (t is not None) and (h is not None) and (cb is not None):
         print('Temperatur: %3.1f C' %t)
         print('Humidit: %3.1f P' %h)
         print('Carbondixiode: %3.1f CB' %cb)
@@ -26,11 +27,11 @@ def measuredData(msg):
     newmsg = msg.replace("t", Swaped)
     Swaped = str(h)
     newmsg = newmsg.replace("h", Swaped)
-    if cp > 2500:
+    if cb > 2500:
         newmsg = newmsg.replace("s", "True")
     else:
         newmsg = newmsg.replace("s", "False")
-    #print(newmsg)
+    print(newmsg)
     msg = newmsg
     return msg
 msg = measuredData(msg)

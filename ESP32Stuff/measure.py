@@ -4,10 +4,10 @@ import dht
 ###Variables
 dhtsensor = dht.DHT11(Pin(25))
 carbonsensor = carbonsensor(Pin(24))
-msg = ("t, h, s, x, y")
+message = ("t, h, s, x, y")
 msg.split(", ", 5)
 ###MainCode
-def measuredData(msg):
+def measuredData():
     dhtsensor.measure()
     t = dhtsensor.temperature()
     #print('Temperatur: %3.1f C' %t)
@@ -31,7 +31,7 @@ def measuredData(msg):
     else:
         newmsg = newmsg.replace("s", "False")
     #print(newmsg)
-    msg = newmsg
+    message = newmsg
     return msg
-msg = measuredData(msg)
+message = measuredData()
 

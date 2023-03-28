@@ -22,12 +22,14 @@ message_interval = 5
 ### Credits:
 ssid = 'HotSpot'
 password = 'Daniel2901Nybo!'
-mqtt_server = '192.168.239.54'
+RPI_IP_Add = '192.168.239.54'
+ESP32_IP_Add = '192.168.239.88'
 port = 1883
-client_id = f'python-mqtt-{random.randint(0, 100)}'
+client_id = f'python-mqtt-{2901}'
 #client_id = ubinascii.hexlify(machine.unique_id())
 topic_sub = b'Received'
 topic_pub = b'measuredData'
+topic = "ESP32Data"
 
 ### MainCode
 #creditsInformationList()

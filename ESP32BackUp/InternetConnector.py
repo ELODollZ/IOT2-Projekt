@@ -26,7 +26,7 @@ client_id = ubinascii.hexlify(machine.unique_id())
 topic_sub = b'Notification'
 topic_pub = b'measuredData'
 
-### Mainkode
+### MainCode
 #creditsInformationList()
 station = network.WLAN(network.STA_IF)
 
