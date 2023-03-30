@@ -20,7 +20,7 @@ $XLOCATION = array[3]
 $YLOCATION = array[4]
 pastmessages = messages
 echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION "IS IT WORKING!"
-vores.db = ~/IOT2-Projekt/DataBaseStorage/measuredData.db
+vores.db = ~/IOT2-Projekt/DataBase/measuredData.db
 sqlite3 vores.db "INSERT INTO measuredData(TEMP, HUMD, SMOKE, XLOCATION, YLOCATION) VALUES ($TEMP,$HUMD, "$SMOKE", $XLOCATION, $YLOCATION);"
 done
 

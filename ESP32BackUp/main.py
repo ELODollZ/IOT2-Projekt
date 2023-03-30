@@ -6,7 +6,7 @@ from umqttsimple import MQTTClient
 import random
 #import graphFile
 #import indexFile
-from measure import measuredData, message
+from measure import msg #, measuredData
 import time
 ### StartUps
 #measure.measuredData()
@@ -16,7 +16,8 @@ username = 'RPI'
 password = 'public'
 broker = 'broker.RPI.io'
 counter = 0
-
+message = msg
+#message = 'Something is coming'
 ### Main Functions
 def sub_cb(topic, msg):
     print((topic, msg))
@@ -43,6 +44,7 @@ except OSError as e:
 ### Main Loop
 while True:
     try:
+        
         client.check_msg()
         if(time.time() - last_message) > message_interval:
             msg = message

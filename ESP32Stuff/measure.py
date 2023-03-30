@@ -1,12 +1,16 @@
-###Imports
+#! /bin/python3
+### Author: NyboMønster
+###Imports fra system
 from machine import Pin
 import dht
+import MQlib
 ###Variables
 dhtsensor = dht.DHT11(Pin(25))
-#carbonsensor = carbonsensor(Pin(24))
-msg = ("t, h, s, x, y")
+cb = MQlib.MQ135(Pin(26))
+# Location: KEA Parkerings grønareal
+msg = ("t, h, s, 55.69194647082459, 12.554169821375735")
 msg.split(", ", 5)
-cb = 400.00
+#cb = 400.00
 ###MainCode
 def measuredData(msg):
     dhtsensor.measure()
@@ -28,7 +32,7 @@ def measuredData(msg):
     newmsg = msg.replace("t", Swaped)
     Swaped = str(h)
     newmsg = newmsg.replace("h", Swaped)
-    if cb > 2500:
+    if cb > 500:
         newmsg = newmsg.replace("s", "True")
     else:
         newmsg = newmsg.replace("s", "False")

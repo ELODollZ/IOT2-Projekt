@@ -1,26 +1,24 @@
-#! Python 3
+#! /bin/python3
+### Author: NyboMønster
 ###Main File
-### Imports
+### Imports fra system
 import sys
-from umqttsimple import MQTTClient
 import random
-#import graphFile
-#import indexFile
-from measure import measuredData, message
 import time
+### Imports fra costumscripts
+from measure import measuredData, message
+from umqttsimple import MQTTClient
 ### StartUps
-#measure.measuredData()
-
+measure.measuredData()
 ### Variables
 username = 'RPI'
 password = 'public'
 broker = 'broker.RPI.io'
 counter = 0
-
 ### Main Functions
 def sub_cb(topic, msg):
     print((topic, msg))
-    if topic_pub == b'Received' and msg == b'received':
+    if topic == b'ESP32Data' and msg == b'received':
         print('ESP Sendt Data')
 
 def connect_and_subscribe():
@@ -39,7 +37,6 @@ try:
    client = connect_and_subscribe()
 except OSError as e:
    restart_and_reconnect()
-
 ### Main Loop
 while True:
     try:

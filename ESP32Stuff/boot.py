@@ -1,19 +1,21 @@
-### Imports
+#! /bin/python3
+###Author: NyboMønster
+### Imports fra ESP'en selv
 import esp
 esp.osdebug(None)
 #import webrepl
 #webrepl.start()
 import network
 import time
-from umqttsimple import MQTTClient
 import ubinascii
 import machine
 import micropython
 import gc
 import random
 gc.collect()
+### Imports fra scripts
+from umqttsimple import MQTTClient
 #from CreditsInformation import creditsInformationList
-
 ##Variables:
 cooldownTimer = 5
 last_message = 0
