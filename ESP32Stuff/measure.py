@@ -6,7 +6,7 @@ import dht
 import MQlib
 ###Variables
 dhtsensor = dht.DHT11(Pin(25))
-cb = MQlib.MQ135(Pin(26))
+carbonsensor = MQlib.MQ135(Pin(26))
 # Location: KEA Parkerings grønareal
 msg = ("t, h, s, 55.69194647082459, 12.554169821375735")
 msg.split(", ", 5)
@@ -18,7 +18,7 @@ def measuredData(msg):
     #print('Temperatur: %3.1f C' %t)
     h = dhtsensor.humidity()
     #print('Humidit: %3.1f P' %h)
-    #cb = carbonsensor.carbondixiode()
+    cb = carbonsensor.get_ppm()
     #cb = 300.2
     #print('Carbondixiode: %3.1f CB' %cb)
     #print(t,h)
