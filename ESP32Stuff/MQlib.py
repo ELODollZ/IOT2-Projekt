@@ -1,6 +1,7 @@
+### Author:
 import math
 import time
-from machine import ADC
+from machine import ADC, Pin
 
 class MQ135(object):
     """ Class for dealing with MQ13 Gas Sensors """
@@ -26,7 +27,7 @@ class MQ135(object):
 
 
     def __init__(self, pin):
-        self.pin = pin
+        self.pin = Pin(26)
 
     def get_correction_factor(self, temperature, humidity):
         """Calculates the correction factor for ambient air temperature and relative humidity
@@ -78,7 +79,7 @@ def mq135lib_example():
     temperature = 21.0
     humidity = 25.0
 
-    mq135 = MQ135(0) # analog PIN 0
+    mq135 = MQ135(26) # analog PIN 0
 
     # loop
     while True:
