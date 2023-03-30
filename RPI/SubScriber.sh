@@ -18,8 +18,8 @@ read $messages
 IFS=',' read -r TEMP HUMD SMOKE XLOCATION YLOCATION <<<"${messages}"
 	if [[ "$pastmessages" == "$messages" ]]
 	echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
-	Database= ~/IOT2-Projekt/DataBase/measuredData.db
-	if [[ ! -r "$DataBase" ]]
+	Database=~/IOT2Projekt/RPI/measuredData.db
+	if [[ ! -r "$Database" ]]
 		sqlite3 $DataBase "INSERT INTO measuredData(TEMP, HUMD, SMOKE, XLOCATION, YLOCATION) VALUES ($TEMP, $HUMD, "$SMOKE", $XLOCATION, $YLOCATION);"
 	then
 		echo No DataBase
