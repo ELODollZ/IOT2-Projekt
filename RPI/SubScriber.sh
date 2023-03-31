@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ###Variables
 messages=""
 pastmessages=""
@@ -10,22 +9,30 @@ HUMD=
 SMOKE=
 XLOCATION=
 YLOCATION=
+DataBase="measuredData.db"
 ###Functions
+function reader {
+	mosquitto_sub	-h	localhost	-t	"EPS32Data"
+	read $messages
+	return $messages
+}
 while :
 do
-mosquitto_sub	-h	localhost	-t	"ESP32Data"
-read $messages
-IFS=',' read -r TEMP HUMD SMOKE XLOCATION YLOCATION <<<"${messages}"
-	if [[ "$pastmessages" == "$messages" ]]
-	echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
-	Database=~/IOT2Projekt/RPI/measuredData.db
-	if [[ ! -r "$Database" ]]
-		sqlite3 $DataBase "INSERT INTO measuredData(TEMP, HUMD, SMOKE, XLOCATION, YLOCATION) VALUES ($TEMP, $HUMD, "$SMOKE", $XLOCATION, $YLOCATION);"
-	then
-		echo No DataBase
+	mosquitto_sub	-h	localhost	-t	"ESP32Data"
+	read $messages
+	#reader 
+	IFS=',' read -r TEMP HUMD SMOKE XLOCATION YLOCATION <<<"${messages}"
+	if [[ "$pastmessages" == "$messages" ]]; then
+		echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
+		#if [[ measuredData.db == $DataBase ]]; then
+			sqlite3 $DataBase "INSERT INTO measuredData(TEMP,HUMD,SMOKE,XLOCATION,YLOCATION) VALUES $($TEMP $HUMD '$SMOKE' $XLOCATION $YLOCATION)"
+			#echo "inserted into Database"
+		#else
+		#	echo "No DataBase found"
+		#fi
+	else
+		echo $SentMessages
+		$pastmessages = $messages
 	fi
-then
-echo $SentMessages
-fi
+echo "test"
 done
-
