@@ -32,7 +32,6 @@ client_id = f'python-mqtt-{2901}'
 topic_sub = b'Received'
 topic_pub = b'measuredData'
 topic = "ESP32Data"
-
 ### MainCode
 #creditsInformationList()
 station = network.WLAN(network.STA_IF)

@@ -43,7 +43,7 @@ class MQ135(object):
 
     def get_resistance(self):
         """Returns the resistance of the sensor in kOhms // -1 if not value got in pin"""
-        adc = ADC(self.pin)
+        adc = ADC(Pin(26))
         value = adc.read()
         if value == 0:
             return -1
@@ -78,21 +78,8 @@ def mq135lib_example():
     # setup
     temperature = 21.0
     humidity = 25.0
-
     mq135 = MQ135(26) # analog PIN 0
-
-    # loop
-    while True:
-        rzero = mq135.get_rzero()
-        corrected_rzero = mq135.get_corrected_rzero(temperature, humidity)
-        resistance = mq135.get_resistance()
-        ppm = mq135.get_ppm()
-        corrected_ppm = mq135.get_corrected_ppm(temperature, humidity)
-
-        print("MQ135 RZero: " + str(rzero) +"\t Corrected RZero: "+ str(corrected_rzero)+
-              "\t Resistance: "+ str(resistance) +"\t PPM: "+str(ppm)+
-              "\t Corrected PPM: "+str(corrected_ppm)+"ppm")
-        time.sleep(0.3)
-
+    ppm = mq135.get_corrected_ppm(temperature, humidity)
+    print(ppm)
 if __name__ == "__main__":
     mq135lib_example()

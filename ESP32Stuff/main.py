@@ -8,13 +8,14 @@ import time
 ### Imports fra costumscripts
 from measure import measuredData, message
 from umqttsimple import MQTTClient
-### StartUps
-measure.measuredData()
 ### Variables
 username = 'RPI'
 password = 'public'
 broker = 'broker.RPI.io'
 counter = 0
+### KEA E bygning grønområde
+msg = ("t, h, s, 55.69194647082459, 12.554169821375735")
+Originmsg = ("t, h, s, 55.69194647082459, 12.554169821375735")
 ### Main Functions
 def sub_cb(topic, msg):
     print((topic, msg))
@@ -31,21 +32,25 @@ def connect_and_subscribe():
     return client
 def restart_and_reconnect():
     print('Failed to connect to MQTT broker. Reconnecting...')
-    time.sleep(10)
+    time.sleep(5)
     machine.reset()
 try:
-   client = connect_and_subscribe()
+    ### StartUps
+    client = connect_and_subscribe()
 except OSError as e:
    restart_and_reconnect()
 ### Main Loop
 while True:
     try:
         client.check_msg()
+        #measuredData(Originmsg)
         if(time.time() - last_message) > message_interval:
-            msg = message
+            msg = measuredData(message)
             client.publish(topic, msg)
             last_message = time.time()
             counter += 1
+            time.sleep(0.5)
+            print("------------------------------")
     except OSError as e:
         restart_and_reconnect()
     except TypeError:
