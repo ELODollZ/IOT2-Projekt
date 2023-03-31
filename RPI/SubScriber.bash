@@ -14,15 +14,12 @@ DataBase="measuredData.db"
 function readerFunction() {
 	mosquitto_sub	-h	localhost	-t	"EPS32Data"
 	read $messages
-		
+	IFS=',' read -r TEMP HUMD SMOKE XLOCATION YLOCATION <<<"${messages}"	
 	return $messages
 }
 while :
 do
-	#mosquitto_sub	-h	localhost	-t	"ESP32Data"
-	#read $messages
-	readerFunction 
-	IFS=',' read -r TEMP HUMD SMOKE XLOCATION YLOCATION <<<"${messages}"
+readerFunction 
 	if [[ "$pastmessages" == "$messages" ]]; then
 		echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
 		if [[ measuredData.db == $DataBase ]]; then
