@@ -22,13 +22,13 @@ do
 readerFunction 
 	if [[ "$pastmessages" != "$messages" ]]; then
 		echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
-		if [[ measuredData.db == $DataBase ]]; then
-			echo "trying to insert into SQLite3"
-			sqlite3 $DataBase "INSERT INTO measuredData(TEMP,HUMD,SMOKE,XLOCATION,YLOCATION) values ($TEMP $HUMD '$SMOKE' $XLOCATION $YLOCATION)"
-			echo "inserted into Database"
-		else
-			echo "No DataBase found"
-		fi
+		#if [[ measuredData.db == $DataBase ]]; then
+		echo "trying to insert into SQLite3"
+		sqlite3 $DataBase "INSERT INTO measuredData(TEMP,HUMD,SMOKE,XLOCATION,YLOCATION) values ($TEMP $HUMD '$SMOKE' $XLOCATION $YLOCATION)"
+			#echo "inserted into Database"
+		#else
+			#echo "No DataBase found"
+		#fi
 	else
 		echo $SentMessages
 		$pastmessages = $messages
