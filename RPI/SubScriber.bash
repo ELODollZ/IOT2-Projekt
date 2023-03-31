@@ -1,7 +1,7 @@
 #!/bin/bash
 ###Variables
 messages=""
-pastmessages=""
+pastmessages="0.0, 0.0, False, 0.0, 0.0"
 testmessages="123.4, 123.4, False, 123.4, 123.4"
 SentMessages="Messages sent"
 TEMP=
@@ -20,7 +20,7 @@ function readerFunction() {
 while :
 do
 readerFunction 
-	if [[ "$pastmessages" == "$messages" ]]; then
+	if [[ "$pastmessages" != "$messages" ]]; then
 		echo $TEMP $HUMD $SMOKE $XLOCATION $YLOCATION
 		if [[ measuredData.db == $DataBase ]]; then
 			echo "trying to insert into SQLite3"
