@@ -8,6 +8,7 @@ import time
 ### Imports fra costumscripts
 from measure import measuredData, message
 from umqttsimple import MQTTClient
+import GPSScript
 ### Variables
 username = 'RPI'
 password = 'public'
@@ -35,15 +36,16 @@ def restart_and_reconnect():
     time.sleep(5)
     machine.reset()
 try:
-    ### StartUps
+### StartUps
     client = connect_and_subscribe()
 except OSError as e:
-   restart_and_reconnect()
+    restart_and_reconnect()
 ### Main Loop
 while True:
     try:
+        GPSScript.gpsFunktion1()
         client.check_msg()
-        #measuredData(Originmsg)
+        measuredData(Originmsg)
         if(time.time() - last_message) > message_interval:
             msg = measuredData(message)
             client.publish(topic, msg)
@@ -57,5 +59,5 @@ while True:
         print("Type error somewhere in code, functional")
     except:
         print("STOP!")
-        exit
+        sys.exit
         time.sleep(2)

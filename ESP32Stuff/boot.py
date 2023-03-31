@@ -15,6 +15,7 @@ import random
 gc.collect()
 ### Imports fra scripts
 from umqttsimple import MQTTClient
+import MQlib
 #from CreditsInformation import creditsInformationList
 ##Variables:
 cooldownTimer = 5

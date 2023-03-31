@@ -7,7 +7,7 @@ import random
 #import MQlib
 ###Variables
 dhtsensor = dht.DHT11(Pin(25))
-#mq135 = MQlib.MQ135(Pin(26))
+mq135 = MQlib.MQ135(Pin(26))
 # Location: KEA Parkerings grønareal
 message = ("t, h, s, 55.69194647082459, 12.554169821375735")
 message.split(", ", 5)
@@ -40,4 +40,4 @@ def measuredData(message):
         newmsg = newmsg.replace("s", "False")
     print(newmsg)
     message = newmsg
-    return message
+    return message   
